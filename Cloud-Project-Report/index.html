@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Project Report-Cloud Computing for Data Analysis</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <script src="assets/js/smoothscroll.js"></script>
+    <script src="assets/js/smooth-scroll.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="assets/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="assets/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <link href="assets/css/lightbox.css" rel="stylesheet" type="text/css">
+    <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/redmond/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Oswald:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya:400,700" rel="stylesheet">
+</head>
+<body data-target="#theMenu">
+
+<!--      Main Menu-->
+   <nav class="menu" id="theMenu">
+        <div class="menu-wrap">
+           <h1 class="logo"><a href="#header" class="data-scroll">Contents</a></h1>
+            <i class="fa fa-times menu-close"></i>
+            <a href="#header" class="data-scroll">Introduction</a>
+            <a href="#dataset" class="data-scroll">DataSet</a>
+            <a href="#algorithms" class="data-scroll">Algorithms</a>
+            <a href="#implementation" class="data-scroll">Implementation</a>
+            <!-- <a href="#instructions" class="data-scroll">Execution Instructions</a> -->
+            <a href="#results" class="data-scroll">Results</a>
+        </div>
+
+        <div id="menuToggle"><i class="fa fa-bars"></i></div>
+    </nav>
+
+<!--   Introduction-->
+
+    <div id="header">
+        <div class="container about-me">
+            <div class="row">
+                <div class="col-lg-12 about-desc">
+                    <h2 class="about-main">Job Recommendation System and Salary Predictor</h2>
+                    <h4>Developed By: Aditya Kapri| Arun Kunnumpuram Thomas | Prajval Bavi| Ron Abhram Cherian</h4>
+                    <br>
+                    <br>
+                    <h5>Introduction</h5>
+                    <!-- Overview of project, tasks   involved and approach, steps implemented, and final products and results. -->
+                    <p class="intro">
+                       In this project we have developed a job Recommendation system and salary predictor.Our system takes as input a user's description like his/her skills
+                       ,industries he/she is interested in,location preferences,type of job  and suggests 10 jobs .Our system also predtics the range of salary which the user should expect.
+                    </p>
+                    <p class="intro">
+                      The motivation behind this project are the problems which we  faced  while searching for jobs.Job searching is a very frustrating process and we find most of the jobs search results to be irrelevant to what users search. For e.g. user might not have the required job experience and yet the search result will give jobs which expects some kind of experience. To get away from that we want to give a tool which can help to smooth the process.
+                    </p>
+                    <p class="intro">
+                      We are converting a user's information to a single vectore .Similary we have created a vector  for each job we have in the dataset.
+                      For the purpose of recommendation we are calculating cosine similarity between user's profile vector and job vectors and recommending the
+                      top 10 jobs. For Predicting the salary range for the user we have developed a naive bayes classifier and a logistic regression
+                      classifier.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--DataSet-->
+
+   <div id="dataset">
+        <div class="container about-me">
+            <div class="row">
+                <div class="col-lg-12 about-desc">
+                    <h5>DataSet</h5>
+                    <p class="intro">
+                        We have taken the dataset from kaggle's "US jobs on Monster.com" kernal.It is a pre-crawled dataset, taken as subset of a bigger dataset (more than 4.7 million job listings) that was created by extracting data from Monster.com, a leading job board.
+                        The datset has 22k rows and 14 attributes.Each row is a job posting with features like job description, job title,location,organization,salary etc.In the dataset salary(yearly) is a continious valued feature.We are dividing it into 7 classes 0-30K,40-50K,50-60K,60-70K,70-90K and greater than 90K.A sample snapshot of the data is given below. <a href="https://www.kaggle.com/PromptCloudHQ/us-jobs-on-monstercom/home" target="_blank">Click here to download the data.</a>
+                    </p>
+
+                    <iframe  width="1150" height="250" src="https://docs.google.com/spreadsheets/d/10N0I5dty8gY2nZ51ulPoyztTRPgqdBF2Tmd7TfkE3iI/edit?usp=sharing"></iframe>
+
+                    <p class="intro">
+                    Data Preparation: We are workig with 4 features :job description,location,job type(full time or temprorary),organization.For converting words to vectors we have used word embeddings(Glove vectors for Word Representation developed in Stanford).Glove gives  us 1 * 50 dimension vector for a word.For getting a single vector  for a
+                    feature like  job description which has multiple words: we are finding vectors for each  word and
+                    adding them to get the resultant vector.If any word is not present in the Glove vector we are using the vector for 'unk' (unknown).
+                    </p>
+                    <p class="intro">
+                    We wanted to assign different weights to different words(according to their importance) while forming a single vector for a document.
+                     In order to achieve that we have  calculated the tf-idf score of each word and multipled its vector by tf-idf score.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--        Algorithms-->
+
+<div id="algorithms">
+        <div class="container about-me">
+            <div class="row">
+                <div class="col-lg-12 about-desc">
+                    <h5>Algorithms</h5>
+
+                    <h6>Naive Bayes Classification</h6>
+                    <p class="intro">
+                        Our dataset has features in text format.Since naive bayes generally gives good results with text data we are using it to predict salary range.Here, we use the Bayes theorem,
+                         $$P(C|x) = {P(x|C)P(C) \over P(x)}.$$
+                         <ul>
+                            <li>P(C|x) is the posterior probability, where we find the probability of C, given the occurrence of x.</li>
+                            <li>P(x|C) is the conditional probability, the probability of x, given the occurrence C.</li>
+                            <li>P(C) is the prior probability, the probability of C on the whole dataset.</li>
+                            <li>P(x) is the probability of x, where x represents each datapoint.</li>
+                         </ul>
+                    </p>
+                    <p class="intro">
+                        In this particular case, we can omit P(x), as it will be a constant denominator.So, the Bayes theorem for classification can be written as,
+                        $$P(C|x) = {P(x|C)P(C)}.$$
+                        Since we have 4 predictor variables, and 7 class variable, the equation can be rewritten as,
+                        $$P(C_{k}|x_{i})=(\prod_{i}P(x_{i}|C_{k}))P(C_{k})$$
+                        where k ranges from 0 to 6.
+                    </p>
+                     <p class="intro">
+                        Here, we are multiplying the conditional probabilities of all the predictor variables and the prior probability of class variable. We need to calculate the above posterior probability for each class variable and compare them to determine which class has higher probability.
+                     </p>
+                     <h6>Logistic Regression</h6>
+                     <p class="intro">
+
+                     </p>
+                     <p class="intro">
+                        Implementation of Logistic Regression –
+                        <ul>
+                        </ul>
+                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Implementation -->
+
+<div id="implementation">
+        <div class="container about-me">
+            <div class="row">
+                <div class="col-lg-12 about-desc">
+                    <h5>Implementation</h5>
+                    <h6>Naive Bayes Implementation</h6>
+                    <p class="intro">
+					Input to naive bayes is a csv file with 1994 records with job description and salary class as the columns. Salary is divided into 7 classes and corresponding label is used (i.e, 0,1,2...6) in the input file.
+                    We have implemented the naive bayes in Amazon S3 and Amazon Elastic Mapreduce (EMR) with 3 clusters. From the python file, Initially we read the input file from S3 bucket  as RDD 
+                    </p>
+					<p class="intro"> Conditional Probability </br>
+					    ------------------------------------------------- </br>
+In order to form the conditional probability of each words in each class we have to prepare set of data. <br>
+
+<p class="intro">We need to form a RDD which contains only the  unique words in the whole corpus. This will be used for forming the conditional probability matrix for each unique words. To form the unique word RDD, In the map function, while reading each line from the input RDD we emit a tuple like (word,1) and in the reducer we grouped the words using reducebykey function. Also the number of unique words is calculated using count() function. </p>
+<p class="intro">We have to form an RDD in a such a way that keys are the classes and values are the combined words of documents belongs to that class. In the mapper, while reading the RDD, we emit the class as key and list of words in that line as value. In the reducer we group the class keys and combined the words list. This RDD can be used to find the total number words in each class. </p>
+<p class="intro">       To find the no of occurence of words in each class , we are using the above RDD. We will be emitting the key value pair as (word#class,1) as the tuple. In the reducer we are combining the keys. So that for each word we will get the number of occurence in Each class. This RDD can be used to find the conditional probability of a word in a classes. To do that we are emitting the dividing the count of each words in class by total number of words in that class.  So we got the conditional probability of words present in each class. </p>
+ <p class="intro">          Now we have to find the conditional probability of each unique word and its conditional probability for each class. In Order to calculate the conditional probability of a word for each class we have defined a function callled wordClassProbailityCalculateUsingMap. First  we are finding the sum of smoothing factor and count of the word in the class. We are storing it as the numerator. We are taking the smoothing factor as 1. For the denominator part, we are adding the number of words in the class and product of smoothing factor and no of unique words in the document. We are doing this for each class for a given word. Then we divide the numerator by denominator and take log of its value.So we got the conditional probability of a word in each classes. We are storing this results as an RDD and storing it as a text file in Amazon S3 Bucket. </p>
+ </P>
+ 
+<p class="intro"> Prior probability of classes </br>
+------------------------------------------ </br>
+Prior probability of each class is calculated by emitting (class,1) by reading  the input file RDD. In the reducer we add the number of 1 associated with a class by using reducebykey method.also we are dividing the total sum of 1 by total number of documents in that class. This result is stored in the Amazon S3 bucket.
+</p>
+
+<p class="intro">Predicting the salary </br>
+------------------------------------------  </br>
+In Order to predict the salary of a given resume,first we are reading the conditional probability matrix and prior probability matrix from the amazon s3 bucket as RDD. For each words in the resume, we are adding the conditional probability for each classes and multiplying it with class prior probability also. Among the these probabilities which class giving the maximum probability is the predicted salary class of the given resume.
+
+                       
+                    </p>
+					
+
+                    <h6>Logistic Regression Implementation</h6>
+                    <p class="intro">
+					
+Assuming independently identically distributed data, we can compute the likelihood as
+
+$$
+P(T \mid x) = \prod_{n=1}^{N} \prod_{k=1}^{K} P(T = k \mid x_n)^{t_{n,k}} = \prod_{n=1}^{N} \prod_{k=1}^{K} y_{n,k}^{t_{n,k}}
+$$
+
+To generate multiple probability outputs for each class, we consider the indicator output targets. 
+
+$$
+T = \begin{bmatrix}
+        t_{1,1} & t_{1,2} & \cdots & t_{1, K} \\
+        t_{2,1} & t_{2,2} & \cdots & t_{2, K} \\
+        \vdots & & &     \vdots \\
+        t_{N,1} & t_{N,2} & \cdots & t_{N, K} \\
+      \end{bmatrix}
+$$
+where $t_{n,k}$ is 0 or 1 with only one 1 per each row. 
+
+
+We define our error function as:
+
+$$
+E(w) = - \ln P(T \mid x) =  - \sum_{n=1}^{N} \sum_{k=1}^{K} t_{n,k} \ln y_{n,k}.
+$$
+
+The update for the weight matrix is given by gradient descent as below:
+
+$$
+w \leftarrow w - \alpha \nabla_w E(w).
+$$
+
+
+We use softmax function for getting the probability of the class:
+
+$$
+g_k(x) = P(T=k \mid x) = \frac{\kappa_k}{\sum_{c=1}^K \kappa_c}
+$$
+where, 
+$$
+\kappa = f(x ; w) = X w.
+$$
+
+The gradient comes out to be:
+
+$$\nabla_w E(w) = -\sum_{n=1}^{N} \Bigg(  t_{n,j} - g_j(x_n)\Bigg) x_n$$
+
+So the final update equation for weights is:
+
+$$
+w_j \leftarrow w_j + \alpha \sum_{n=1}^{N} \Big( t_{n,j} - g_j(x_n)\Big) x_n.
+$$
+
+1. For every sample we need to calculate the gradient which can be done using map function. </br>
+2. The gradient is being calculated for each class(we have k classes) and we emit (k,v) pair of (class, gradient). </br>
+3. Then we will use reduceByKey to calculate the total gradients and update the weight matrix for the kth class. </br>
+4. The updated matrix is then broadcasted to all the partitions so that the new gradient calculated is always with  
+   the latest weight matrix. </br>
+5. We will finally check for convergence by checking if the new weight matrix has changed w.r.t the old weight matrix, </br>
+   if it hasnt we break and the algorithm has converged else we will keep it running for n iterations.
+
+                    </p>
+					</br>
+					
+					<h6>K Means Implementation</h6>
+                    <p class="intro">
+					
+					
+		The input for KMeans implementation is a comma separated csv with values of job description, organization and salary. We are putting this csv in the Amazon S3 bucket and reading it as RDD from spark program. <p>
+<p class="intro">
+					
+		Using elbow method, for our dataset we have found out the number of clusters we need for KMeans as 5. So in our program we took the 5 sample records from RDD as the initial cluster points. </p>
+ <p class="intro">	
+		In the mapper, for each documents we find out the closest cluster point among the 5 clusters by calculating the euclidean distance between the point and cluster point and transform the values as (closest cluster center, point ) using lambda function. In the reducer for each cluster center we take the average of points associated with that cluster center using reduceByKey method. The average of these points will be the new cluster center. We are doing these steps for 100 iteration. Instead of doing the steps for a number of iteration, we also tried the till the difference between the sum of old cluster center points and new cluster center points become lesser than a threshold. </p>
+					</p>
+					</br>
+					
+					<h6>Cosine Similarity Implementation</h6>
+                    <p class="intro">
+					First we computed the TF-IDF of each of the word w.r.t to each row(Job description as the document and dumped to an external file.)
+					Then we converted all the words of the Job description in each of the row into its corresponding word vectors using Glove Vectors. We multiplied each word vector with a smoothing parameter and then multiplied each of them with their corresponding TF-IDF value.
+					
+					</p>
+					<p class="intro">
+					Our input to computing Document similarity includes TF-IDF scores computed, resume file for which you need to find the similarity and finally the keywords you want to search for. </br>
+					The Resume document will be converted to the word vector using Glove vector. </br>
+                    Our dataset is then </br></br>
+                    1.read, </br>
+                    2.converted to glove vector, </br>
+                    3.Multiply by tfidf</br>
+					</br>
+                    Then take the dot product of above computed word vector with resume word vector to return the similarity score.</br>
+					</p>	
+					
+                    <h6>Things we learnt</h6>
+					<p class="intro">
+                    <ul>
+                        <li class="intro">One of the biggest learning for us from this project is that not all the algorithms work on all the data.Logistic regression in our case is predicting only one class for all the test examples</li>
+                        <li class="intro">In case of naive bayes class distribution or no of traning examples belonging from each class affects the model performance greatly.In our case we initialy strarted with 13 classes with some classes with very few records in them.For this data the model accuracy was not good(12%).Then we combine some classes in order  to make sufficient examples  in each class;this increases our model performance to 84%</li>
+                    </ul>
+					</p>
+                    <h6>Technologies Used</h6>
+					<p class="intro">
+                    <ul>
+                        <li class="intro">Framework: Spark</li>
+                        <li class="intro">External Tool: Glove(For converting words to vectors).</li>
+                        <li class="intro">External Tool: ScikitLearn and Pandas for data preparation and cleaning,</li>
+						<li class="intro">External Tool: Cloudera, Amazon EMR, Amazon S3</li>
+                    </ul>
+					</p>
+                     <h6>Task Distribution</h6>
+					 <p class="intro">
+                    <ul>
+                        <li class="intro">Adity Kapri: Data Preprocessing, Naive Bayes Algorithm</li>
+						<li class="intro">Arun Kunnumpuram Thomas: Data Preprocessing, K Means</li>
+						<li class="intro">Prajval Bhavi: Data Preprocessing Logistic Regression</li>
+                        <li class="intro">Ron Abhram Cherian: Data Preprocessing,cosine similarity</li>
+                    </ul>
+					</p>
+                    <h6>Deliverables</h6>
+					<p class="intro">
+                    <ul>
+                        <li class="intro"><em><b>What we will definitely accomplish:</b></em> Dataset Collection,Clustering of Jobs. <em><b>Clustering of jobs completed.Web scrapping for dataset collection not sucessfull.</b></em></li>
+                        <li class="intro"><em><b>What we are likely to accomplish:</b></em> - Salary Prediction. <em><b>Completed</b></em></li>
+                        <li class="intro"><em><b>What we would ideally like to accomplish:</b></em> - Job recommendation system.<em><b>Completed.(Jobs from all the clusters present in top 10 not completed because of limited time.) </b></em></li>
+                    </ul>
+					</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Results -->
+
+     <div id="results">
+        <div class="container about-me">
+            <div class="row">
+                <div class="col-lg-12 about-desc">
+                    <h5>Results & Observations</h5>
+                    <p class="intro">
+                        Here, we are evaluating a classifier based on its accuracy.
+
+                        $$Accuracy={tc \over {tc + tf}}$$
+                        where,
+                        <ul>
+                            <li>
+                                tc is the total number of correct prediction by the model.
+                            </li>
+                            <li>
+                                tf is the total number of incorrect prediction by the model.
+                            </li>
+                            <li>
+                                tc + tf is the total number of records in the testing set.
+                            </li>
+                        </ul>
+                    </p>
+
+                    <p class="intro">
+                        For Naive bayes we get best accuracy of 84% and for logistic regresion we get an accuracy of 16%.For our data Logistic Regression is predicting
+                        all the input as class 5.We Even tried Scikitlearn's logistic regression but that is also predicting only 5 for all the inputs.
+                    </p>
+
+                    <h6>Naive Bayes Classifier</h6>
+                    The accuracy for naive bayes classifier is 84.05%
+                    Below is the confusion matrix for naive bayes classifier.
+                    <table style="width: 545.8px; height: 325px; margin-left: auto; margin-right: auto;">
+                    <tbody>
+                    <tr style="height: 39px;">
+                    <td style="width: 62px; height: 39px;">&nbsp;</td>
+                    <td style="width: 63px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;0-30K</td>
+                    <td style="width: 65px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;30-40K</td>
+                    <td style="width: 62px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;40-50K</td>
+                    <td style="width: 66px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;50-60K</td>
+                    <td style="width: 64px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;60-70K</td>
+                    <td style="width: 66px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;70-90K</td>
+                    <td style="width: 93.8px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;>90K</td>
+                    </tr>
+                    <tr style="height: 39px; text-align: justify;">
+                    <td style="width: 62px; height: 39px; text-align: center;">0 - 30K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">263</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">16</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">4</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">5</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">&nbsp;2</td>
+                    </tr>
+                    <tr style="height: 39px; text-align: justify;">
+                    <td style="width: 62px; height: 39px; text-align: center;">30-40K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">24</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">258</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">8</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">1</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">7</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">&nbsp;5</td>
+                    </tr>
+                    <tr style="height: 39px; text-align: justify;">
+                    <td style="width: 62px; height: 39px; text-align: center;">40-50K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">9</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">11</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">244</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">2</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">2</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">9</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">13</td>
+                    </tr>
+                    <tr style="height: 39px; text-align: justify;">
+                    <td style="width: 62px; height: 39px; text-align: center;">50-60K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">13</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">9</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">8</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">168</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">2</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">9</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">12</td>
+                    </tr>
+                    <tr style="height: 28.8px; text-align: justify;">
+                    <td style="width: 62px; height: 28.8px; text-align: center;">60-70K</td>
+                    <td style="width: 63px; height: 28.8px; text-align: center;">5</td>
+                    <td style="width: 65px; height: 28.8px; text-align: center;">7</td>
+                    <td style="width: 62px; height: 28.8px; text-align: center;">7</td>
+                    <td style="width: 66px; height: 28.8px; text-align: center;">4</td>
+                    <td style="width: 64px; height: 28.8px; text-align: center;">131</td>
+                    <td style="width: 66px; height: 28.8px; text-align: center;">29</td>
+                    <td style="width: 93.8px; height: 28.8px;">
+                    <div class="out_prompt_overlay prompt" style="text-align: center;" title="click to scroll output; double click to hide">&nbsp;40</div>
+                    <div class="output vbox">
+                    <div class="output_area">
+                    <div class="prompt">&nbsp;</div>
+                    </div>
+                    </div>
+                    </td>
+                    </tr>
+                    <tr style="height: 40px; text-align: justify;">
+                    <td style="width: 62px; height: 40px; text-align: center;">70-90K</td>
+                    <td style="width: 63px; height: 40px; text-align: center;">4</td>
+                    <td style="width: 65px; height: 40px; text-align: center;">1</td>
+                    <td style="width: 62px; height: 40px; text-align: center;">3</td>
+                    <td style="width: 66px; height: 40px; text-align: center;">0</td>
+                    <td style="width: 64px; height: 40px; text-align: center;">5</td>
+                    <td style="width: 66px; height: 40px; text-align: center;">263</td>
+                    <td style="width: 93.8px; height: 40px; text-align: center;">27</td>
+                    </tr>
+                    <tr style="height: 40px; text-align: justify;">
+                    <td style="width: 62px; height: 40px; text-align: center;"> >90K</td>
+                    <td style="width: 63px; height: 40px; text-align: center;">3</td>
+                    <td style="width: 65px; height: 40px; text-align: center;">1</td>
+                    <td style="width: 62px; height: 40px; text-align: center;">3</td>
+                    <td style="width: 66px; height: 40px; text-align: center;">1</td>
+                    <td style="width: 64px; height: 40px; text-align: center;">2</td>
+                    <td style="width: 66px; height: 40px; text-align: center;">5</td>
+                    <td style="width: 93.8px; height: 40px;">
+                    <p style="text-align: center;">349</p>
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>
+
+                    <h6>Logistic Regression Classifier</h6>
+                    Logistic Regression classifier is prediction everything as 5.
+                    Below is the confusion matrix for Logistic Regression classifier.
+                    <table style="width: 545.8px; height: 325px; margin-left: auto; margin-right: auto;">
+                    <tbody>
+                    <tr style="height: 39px;">
+                    <td style="width: 62px; height: 39px;">&nbsp;</td>
+                    <td style="width: 63px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;0-30K</td>
+                    <td style="width: 65px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;30-40K</td>
+                    <td style="width: 62px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;40-50K</td>
+                    <td style="width: 66px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;50-60K</td>
+                    <td style="width: 64px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;60-70K</td>
+                    <td style="width: 66px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;70-90K</td>
+                    <td style="width: 93.8px; height: 39px;">&nbsp; &nbsp; &nbsp; &nbsp;>90K</td>
+                    </tr>
+                    <tr style="height: 39px; text-align: justify;">
+                    <td style="width: 62px; height: 39px; text-align: center;">0 - 30K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">290</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">&nbsp;0</td>
+                    </tr>
+                    <tr style="height: 39px; text-align: justify;">
+                    <td style="width: 62px; height: 39px; text-align: center;">30-40K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">303</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">&nbsp;0</td>
+                    </tr>
+                    <tr style="height: 39px; text-align: justify;">
+                    <td style="width: 62px; height: 39px; text-align: center;">40-50K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">290</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">&nbsp;0</td>
+                    </tr>
+                    <tr style="height: 39px; text-align: justify;">
+                    <td style="width: 62px; height: 39px; text-align: center;">50-60K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">221</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">&nbsp;0</td>
+                    </tr>
+                    <tr style="height: 28.8px; text-align: justify;">
+                    <td style="width: 62px; height: 28.8px; text-align: center;">60-70K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">223</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">&nbsp;0</td>
+
+                    <div class="out_prompt_overlay prompt" style="text-align: center;" title="click to scroll output; double click to hide">&nbsp;40</div>
+                    <div class="output vbox">
+                    <div class="output_area">
+                    <div class="prompt">&nbsp;</div>
+                    </div>
+                    </div>
+                    </td>
+                    </tr>
+                    <tr style="height: 40px; text-align: justify;">
+                    <td style="width: 62px; height: 40px; text-align: center;">70-90K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">303</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">&nbsp;0</td>
+                    </tr>
+                    <tr style="height: 40px; text-align: justify;">
+                    <td style="width: 62px; height: 40px; text-align: center;"> >90K</td>
+                    <td style="width: 63px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 65px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 62px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 64px; height: 39px; text-align: center;">0</td>
+                    <td style="width: 66px; height: 39px; text-align: center;">364</td>
+                    <td style="width: 93.8px; height: 39px; text-align: center;">&nbsp;0</td>
+
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="References">
+        <div class="container about-me">
+            <div class="row">
+                <div class="col-lg-12 about-desc">
+                    <h5>References</h5>
+
+                     <p class="intro">
+                        <ul>
+                            <li><a href="https://papers.nips.cc/paper/3150-map-reduce-for-machine-learning-on-multicore.pdf" target="_blank">Map Reduce for Machine Learning on Multicore.</a></li>
+                        </ul>
+                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!--        Scripts Used-->
+    <script src="assets/bootstrap/js/jquery.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/general.js"></script>
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.youtubepopup.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+</body>
+
+</html>
